@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  krakend:
+    image: devopsfaith/krakend:2.4.3
+    ports:
+      - "8080:8080"
+    volumes:
+      - /c/krakend:/etc/krakend
+    command: run -c krakend.json | sh -c "while true; do sleep 5; krakend check -c /etc/krakend/krakend.json; done"
+    restart: always
